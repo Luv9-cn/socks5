@@ -70,10 +70,10 @@ SERVICE_NAME="socks5-proxy"
 PORT=1080
 GITHUB_REPO="https://raw.githubusercontent.com/Luv9-cn/socks5/master"
 
-apt update -qq 2>/dev/null
+apt update -qq >/dev/null 2>&1
 progress=20
 show_progress $progress
-apt install -y -qq socat wget curl 2>/dev/null
+apt install -y -qq socat wget curl >/dev/null 2>&1
 progress=40
 show_progress $progress
 
