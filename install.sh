@@ -22,7 +22,7 @@ show_progress() {
     for ((i=0; i<filled; i++)); do printf "${progress_char}"; done
     printf "${WHITE}"
     for ((i=0; i<empty; i++)); do printf "░"; done
-    printf "${CYAN}] ${YELLOW}%3d%%${RESET} ${BLUE}安装中...${RESET}" $percentage
+    printf "${CYAN}] ${YELLOW}%3d%%${RESET} ${BLUE}正在安装...${RESET}" $percentage
 }
 
 get_server_ip() {
@@ -68,16 +68,24 @@ INSTALL_DIR="/opt/socks5"
 SERVER_SCRIPT="socks5_light.sh"
 SERVICE_NAME="socks5-proxy"
 PORT=1080
-GITHUB_REPO="https://raw.githubusercontent.com/Luv9-cn/socks5/master"
+GITHUB_REPO="https://raw.githubusercontent.com/username/socks5/master"
 
+sleep 0.2
+progress=5
+show_progress $progress
 apt update -qq >/dev/null 2>&1
 progress=20
+show_progress $progress
+sleep 0.2
+progress=25
 show_progress $progress
 apt install -y -qq socat wget curl >/dev/null 2>&1
 progress=40
 show_progress $progress
 
 mkdir -p $INSTALL_DIR
+progress=45
+show_progress $progress
 
 if ! wget -q -O "$INSTALL_DIR/$SERVER_SCRIPT" "$GITHUB_REPO/$SERVER_SCRIPT"; then
     cat > "$INSTALL_DIR/$SERVER_SCRIPT" << 'EOF'
@@ -92,6 +100,9 @@ socat TCP4-LISTEN:$PORT,reuseaddr,fork PROXY:127.0.0.1:0.0.0.0:0,proxyport=$PORT
 EOF
 fi
 
+progress=55
+show_progress $progress
+sleep 0.2
 chmod +x "$INSTALL_DIR/$SERVER_SCRIPT"
 progress=60
 show_progress $progress
@@ -112,8 +123,15 @@ StandardError=null
 WantedBy=multi-user.target
 EOF
 
+progress=70
+show_progress $progress
+sleep 0.2
 systemctl daemon-reload > /dev/null 2>&1
+progress=75
+show_progress $progress
 systemctl enable $SERVICE_NAME > /dev/null 2>&1
+progress=80
+show_progress $progress
 systemctl start $SERVICE_NAME > /dev/null 2>&1
 progress=85
 show_progress $progress
@@ -135,19 +153,17 @@ echo
 
 SERVER_IP=$(get_server_ip)
 
-echo -e "\n${GREEN}${BOLD}✓ 安装完成!${RESET}\n"
+echo -e "\n${GREEN}${BOLD}安装完成!${RESET}\n"
 
-echo -e "${BLUE}${BOLD}📡  代理服务器配置信息${RESET}"
+echo -e "${BLUE}${BOLD}代理服务器配置信息${RESET}"
 echo -e "${YELLOW}协议:${RESET} ${GREEN}Socks5${RESET}"
 echo -e "${YELLOW}地址:${RESET} ${CYAN}${UNDERLINE}socks5://${SERVER_IP}:${PORT}${RESET}"
 echo -e "${YELLOW}认证:${RESET} ${GREEN}无需认证${RESET}"
 echo -e ""
-echo -e "${BLUE}${BOLD}⚙️  服务管理命令${RESET}"
+echo -e "${BLUE}${BOLD}服务管理命令${RESET}"
 echo -e "${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}"
 
-echo -e "\n${GREEN}${BOLD}🎉  代理服务器已成功部署！${RESET}"
-echo -e "${BLUE}💡  提示: ${RESET}${WHITE}请将代理地址复制到您的客户端进行配置${RESET}"
-echo -e "\n${PURPLE}${BOLD}👨‍💻  Telegram: ${RESET}${BLUE}@Winter_Fog${RESET}"
-echo -e "${PURPLE}${BOLD}🔗  开源地址: ${RESET}${CYAN}https://github.com/Luv9-cn/socks5/${RESET}"
-
-
+echo -e "\n${GREEN}${BOLD}代理服务器已成功部署！${RESET}"
+echo -e "${BLUE}提示: ${RESET}${WHITE}请将代理地址复制到您的客户端进行配置${RESET}"
+echo -e "\n${PURPLE}${BOLD}Telegram: ${RESET}${BLUE}@Winter_Fog${RESET}"
+echo -e "${PURPLE}${BOLD}开源地址: ${RESET}${CYAN}https://github.com/Luv9-cn/socks5/${RESET}"
