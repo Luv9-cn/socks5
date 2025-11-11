@@ -20,7 +20,7 @@
 在 Debian/Ubuntu 系统上，只需执行以下命令即可完成安装：
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/Luv9-cn/socks5/master/install.sh)
+bash <(wget -qO- -o- https://github.com/Luv9-cn/socks5/raw/main/install.sh)
 ```
 
 ### 安装过程
@@ -121,5 +121,6 @@ export https_proxy="socks5://[服务器IP]:1080"
 - **Telegram**: [@Winter_Fog](https://t.me/Winter_Fog)
 - **项目地址**: [https://github.com/Luv9-cn/socks5](https://github.com/Luv9-cn/socks5)
 - **反馈渠道**: GitHub Issues
+
 
 
