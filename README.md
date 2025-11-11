@@ -1,12 +1,5 @@
 # 轻量级 Socks5 代理服务器
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/username/socks5/master/logo.svg" width="120" height="120" alt="Socks5 Logo">
-  <p align="center">
-    <strong>高性能、轻量级的 Socks5 代理服务解决方案</strong>
-  </p>
-</div>
-
 ## 项目概述
 
 这是一个基于 Bash 和 socat 的轻量级 Socks5 代理服务器实现，专注于简单部署和高效运行。适合在 Linux 服务器上快速搭建代理服务，无需复杂配置。
@@ -27,7 +20,7 @@
 在 Debian/Ubuntu 系统上，只需执行以下命令即可完成安装：
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/username/socks5/master/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/Luv9-cn/socks5/master/install.sh)
 ```
 
 ### 安装过程
@@ -126,5 +119,6 @@ export https_proxy="socks5://[服务器IP]:1080"
 ## 联系与支持
 
 - **作者**: Socks5 Team
-- **项目地址**: [https://github.com/username/socks5](https://github.com/username/socks5)
+- **项目地址**: [https://github.com/Luv9-cn/socks5](https://github.com/Luv9-cn/socks5)
 - **反馈渠道**: GitHub Issues
+
