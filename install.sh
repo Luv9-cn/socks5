@@ -152,7 +152,7 @@ echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}认证:${RESET} ${GREEN}无需认�
 echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
 echo -e "${PURPLE}${BOLD}│${RESET} ${BLUE}${BOLD}⚙️  服务管理命令${RESET}${PURPLE}${BOLD}│${RESET}"
 echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}${PURPLE}${BOLD}│${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}${PURPLE}${BOLD}${BOLD}│${RESET}"
 echo -e "${PURPLE}${BOLD}╰─────────────────────────────────────────────╯${RESET}"
 
 echo -e "\n${GREEN}${BOLD}🎉  代理服务器已成功部署！${RESET}"
