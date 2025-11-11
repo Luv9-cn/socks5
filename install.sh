@@ -147,7 +147,7 @@ echo -e "${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}"
 
 echo -e "\n${GREEN}${BOLD}🎉  代理服务器已成功部署！${RESET}"
 echo -e "${BLUE}💡  提示: ${RESET}${WHITE}请将代理地址复制到您的客户端进行配置${RESET}"
-echo -e "\n${PURPLE}${BOLD}👨‍💻  作者: ${RESET}${BLUE}Socks5 Team${RESET}"
-echo -e "${PURPLE}${BOLD}🔗  开源地址: ${RESET}${CYAN}https://github.com/username/socks5${RESET}"
+echo -e "\n${PURPLE}${BOLD}👨‍💻  Telegram: ${RESET}${BLUE}@Winter_Fog${RESET}"
+echo -e "${PURPLE}${BOLD}🔗  开源地址: ${RESET}${CYAN}https://github.com/Luv9-cn/socks5/${RESET}"
 
 
