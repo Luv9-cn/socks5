@@ -48,8 +48,8 @@ get_server_ip() {
 
 # 检查是否以root用户运行
 if [ "$(id -u)" != "0" ]; then
-   echo -e "${RED}错误: 此脚本需要以root用户运行${RESET}"
-   exit 1
+    echo -e "${RED}错误: 此脚本需要以root用户运行${RESET}"
+    exit 1
 fi
 
 # 初始化进度
@@ -62,9 +62,6 @@ SERVER_SCRIPT="socks5_light.sh"
 SERVICE_NAME="socks5-proxy"
 PORT=1080  # 默认使用1080端口
 GITHUB_REPO="https://raw.githubusercontent.com/Luv9-cn/socks5/master"
-
-# 获取服务器IP
-SERVER_IP=$(get_server_ip)
 
 # 更新系统包和安装必要工具
 apt update -qq 2>/dev/null
@@ -86,7 +83,13 @@ if ! wget -q -O "$INSTALL_DIR/$SERVER_SCRIPT" "$GITHUB_REPO/$SERVER_SCRIPT"; the
 # 简易Socks5代理服务器脚本
 PORT=1080
 
-echo "Starting Socks5 proxy on port $PORT..."
+# 支持通过参数设置端口
+while getopts "p:" opt; do
+  case $opt in
+    p) PORT="$OPTARG" ;;
+  esac
+done
+
 socat TCP4-LISTEN:$PORT,reuseaddr,fork PROXY:127.0.0.1:0.0.0.0:0,proxyport=$PORT
 EOF
 fi
