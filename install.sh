@@ -120,9 +120,13 @@ show_progress $progress
 
 if command -v ufw &> /dev/null && ufw status | grep -q "Status: active"; then
     ufw allow $PORT/tcp > /dev/null 2>&1
+    progress=90
+    show_progress $progress
 elif command -v iptables &> /dev/null; then
     iptables -A INPUT -p tcp --dport $PORT -j ACCEPT > /dev/null 2>&1
     (command -v netfilter-persistent &> /dev/null && netfilter-persistent save) > /dev/null 2>&1
+    progress=90
+    show_progress $progress
 fi
 
 progress=100
