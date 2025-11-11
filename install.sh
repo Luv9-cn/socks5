@@ -1,18 +1,46 @@
 #!/bin/bash
 
-# 定义高级颜色方案
+# 定义高级颜色方案和样式
 GREEN="\e[1;32m"
 BLUE="\e[1;34m"
 CYAN="\e[1;36m"
 PURPLE="\e[1;35m"
 YELLOW="\e[1;33m"
 RED="\e[1;31m"
+WHITE="\e[1;37m"
 RESET="\e[0m"
+BOLD="\e[1m"
+ITALIC="\e[3m"
+UNDERLINE="\e[4m"
 
-# 高级进度显示函数
+# 显示精美的标题
+display_header() {
+    echo -e "${PURPLE}${BOLD}"
+    echo -e "  ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${RESET}"
+    echo -e "  ╰╮${WHITE}${BOLD}        Socks5 代理服务器         ${PURPLE}${BOLD}╭╯${RESET}"
+    echo -e "  ──┴───────────────────────────────────┴──${RESET}"
+    echo -e "${RESET}"
+}
+
+# 高级视觉化进度条函数
 show_progress() {
     local percentage=$1
-    printf "\r${BLUE}安装 Socks5 代理服务器... ${CYAN}%2d%%${RESET}" $percentage
+    local width=40
+    local filled=$((percentage * width / 100))
+    local empty=$((width - filled))
+    
+    # 进度条字符
+    local progress_char="█"
+    
+    printf "\r${CYAN}[${RESET}"
+    # 填充进度条
+    printf "${GREEN}"
+    for ((i=0; i<filled; i++)); do printf "${progress_char}"; done
+    # 未填充部分
+    printf "${WHITE}"
+    for ((i=0; i<empty; i++)); do printf "░"; done
+    # 百分比和说明
+    printf "${CYAN}] ${YELLOW}%3d%%${RESET} ${BLUE}安装中...${RESET}" $percentage
 }
 
 # 自动识别服务器IP地址（静默模式）
@@ -51,9 +79,12 @@ get_server_ip() {
     echo "your-server-ip"
 }
 
+# 显示标题
+display_header
+
 # 检查是否以root用户运行
 if [ "$(id -u)" != "0" ]; then
-    echo -e "${RED}错误: 此脚本需要以root用户运行${RESET}"
+    echo -e "${RED}${BOLD}错误: ${RESET}${RED}此脚本需要以root用户运行${RESET}"
     exit 1
 fi
 
@@ -147,16 +178,22 @@ echo
 # 获取服务器IP
 SERVER_IP=$(get_server_ip)
 
-# 显示高级格式化的安装完成信息
-echo
-echo -e "${PURPLE}┌────────────────────────────────────────┐${RESET}"
-echo -e "${GREEN}✓ 安装完成${RESET}"
-echo -e "${PURPLE}└────────────────────────────────────────┘${RESET}"
-echo
-echo -e "${BLUE}代理信息:${RESET}"
-echo -e "  ${GREEN}• ${RESET}${YELLOW}协议:${RESET} ${BLUE}Socks5${RESET}"
-echo -e "  ${GREEN}• ${RESET}${YELLOW}地址:${RESET} ${CYAN}socks5://${SERVER_IP}:${PORT}${RESET}"
-echo -e "  ${GREEN}• ${RESET}${YELLOW}认证:${RESET} ${PURPLE}无需认证${RESET}"
-echo
-echo -e "${BLUE}服务管理:${RESET}"
-echo -e "  ${GREEN}• ${RESET}${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}"
+# 显示高级精美的安装完成信息
+echo -e "\n${GREEN}${BOLD}✓ 安装完成!${RESET}\n"
+
+# 绘制高级信息框
+echo -e "${PURPLE}${BOLD}╭─────────────────────────────────────────────╮${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${BLUE}${BOLD}📡  代理服务器配置信息  ${RESET}${PURPLE}${BOLD}│${RESET}"
+echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}协议:${RESET} ${GREEN}Socks5${RESET}${PURPLE}${BOLD}                                │${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}地址:${RESET} ${CYAN}${UNDERLINE}socks5://${SERVER_IP}:${PORT}${RESET}${PURPLE}${BOLD} │${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}认证:${RESET} ${GREEN}无需认证${RESET}${PURPLE}${BOLD}                            │${RESET}"
+echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${BLUE}${BOLD}⚙️  服务管理命令${RESET}${PURPLE}${BOLD}                        │${RESET}"
+echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
+echo -e "${PURPLE}${BOLD}│${RESET} ${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}${PURPLE}${BOLD} │${RESET}"
+echo -e "${PURPLE}${BOLD}╰─────────────────────────────────────────────╯${RESET}"
+
+# 添加最终提示
+echo -e "\n${GREEN}${BOLD}🎉  代理服务器已成功部署！${RESET}"
+echo -e "${BLUE}💡  提示: ${RESET}${WHITE}请将代理地址复制到您的客户端进行配置${RESET}"
