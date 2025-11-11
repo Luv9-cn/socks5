@@ -118,7 +118,8 @@ export https_proxy="socks5://[服务器IP]:1080"
 
 ## 联系与支持
 
-- **作者**: Socks5 Team
+- **Telegram**: [@Winter_Fog](https://t.me/Winter_Fog)
 - **项目地址**: [https://github.com/Luv9-cn/socks5](https://github.com/Luv9-cn/socks5)
 - **反馈渠道**: GitHub Issues
+
 
