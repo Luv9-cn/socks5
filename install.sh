@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# 定义颜色（保留用于必要输出）
+# 定义高级颜色方案
 GREEN="\e[1;32m"
+BLUE="\e[1;34m"
+CYAN="\e[1;36m"
+PURPLE="\e[1;35m"
+YELLOW="\e[1;33m"
 RED="\e[1;31m"
 RESET="\e[0m"
 
-# 极简进度显示函数
+# 高级进度显示函数
 show_progress() {
-    printf "\r${GREEN}安装中... %2d%%${RESET}" $1
+    local percentage=$1
+    printf "\r${BLUE}安装 Socks5 代理服务器... ${CYAN}%2d%%${RESET}" $percentage
 }
 
 # 自动识别服务器IP地址（静默模式）
@@ -142,7 +147,16 @@ echo
 # 获取服务器IP
 SERVER_IP=$(get_server_ip)
 
-# 显示最小化安装完成信息
+# 显示高级格式化的安装完成信息
+echo
+echo -e "${PURPLE}┌────────────────────────────────────────┐${RESET}"
 echo -e "${GREEN}✓ 安装完成${RESET}"
-echo -e "代理地址: socks5://${SERVER_IP}:${PORT}"
-echo -e "服务命令: systemctl [start|stop|restart] ${SERVICE_NAME}"
+echo -e "${PURPLE}└────────────────────────────────────────┘${RESET}"
+echo
+echo -e "${BLUE}代理信息:${RESET}"
+echo -e "  ${GREEN}• ${RESET}${YELLOW}协议:${RESET} ${BLUE}Socks5${RESET}"
+echo -e "  ${GREEN}• ${RESET}${YELLOW}地址:${RESET} ${CYAN}socks5://${SERVER_IP}:${PORT}${RESET}"
+echo -e "  ${GREEN}• ${RESET}${YELLOW}认证:${RESET} ${PURPLE}无需认证${RESET}"
+echo
+echo -e "${BLUE}服务管理:${RESET}"
+echo -e "  ${GREEN}• ${RESET}${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}"
