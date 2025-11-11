@@ -10,14 +10,6 @@ RESET="\e[0m"
 BOLD="\e[1m"
 UNDERLINE="\e[4m"
 
-display_header() {
-    echo -e "${PURPLE}${BOLD}"
-    echo -e "  ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮${RESET}"
-    echo -e "  ╰╮${WHITE}${BOLD}        Socks5 代理服务器         ${PURPLE}${BOLD}╭╯${RESET}"
-    echo -e "  ──┴───────────────────────────────────┴──${RESET}"
-    echo -e "${RESET}"
-}
-
 show_progress() {
     local percentage=$1
     local width=40
@@ -63,8 +55,6 @@ get_server_ip() {
     
     echo "your-server-ip"
 }
-
-display_header
 
 if [ "$(id -u)" != "0" ]; then
     echo -e "${RED}${BOLD}错误: ${RESET}${RED}此脚本需要以root用户运行${RESET}"
@@ -143,19 +133,17 @@ SERVER_IP=$(get_server_ip)
 
 echo -e "\n${GREEN}${BOLD}✓ 安装完成!${RESET}\n"
 
-echo -e "${PURPLE}${BOLD}╭─────────────────────────────────────────────╮${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${BLUE}${BOLD}📡  代理服务器配置信息  ${RESET}${PURPLE}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}协议:${RESET} ${GREEN}Socks5${RESET}                ${PURPLE}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}地址:${RESET} ${CYAN}${UNDERLINE}socks5://${SERVER_IP}:${PORT}${RESET}${PURPLE}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${YELLOW}认证:${RESET} ${GREEN}无需认证${RESET}              ${PURPLE}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${BLUE}${BOLD}⚙️  服务管理命令${RESET}${PURPLE}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}├─────────────────────────────────────────────┤${RESET}"
-echo -e "${PURPLE}${BOLD}│${RESET} ${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}${PURPLE}${BOLD}${BOLD}│${RESET}"
-echo -e "${PURPLE}${BOLD}╰─────────────────────────────────────────────╯${RESET}"
+echo -e "${BLUE}${BOLD}📡  代理服务器配置信息${RESET}"
+echo -e "${YELLOW}协议:${RESET} ${GREEN}Socks5${RESET}"
+echo -e "${YELLOW}地址:${RESET} ${CYAN}${UNDERLINE}socks5://${SERVER_IP}:${PORT}${RESET}"
+echo -e "${YELLOW}认证:${RESET} ${GREEN}无需认证${RESET}"
+echo -e ""
+echo -e "${BLUE}${BOLD}⚙️  服务管理命令${RESET}"
+echo -e "${CYAN}systemctl [start|stop|restart] ${SERVICE_NAME}${RESET}"
 
 echo -e "\n${GREEN}${BOLD}🎉  代理服务器已成功部署！${RESET}"
 echo -e "${BLUE}💡  提示: ${RESET}${WHITE}请将代理地址复制到您的客户端进行配置${RESET}"
 echo -e "\n${PURPLE}${BOLD}👨‍💻  作者: ${RESET}${BLUE}Socks5 Team${RESET}"
 echo -e "${PURPLE}${BOLD}🔗  开源地址: ${RESET}${CYAN}https://github.com/username/socks5${RESET}"
+
+
