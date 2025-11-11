@@ -17,7 +17,7 @@ INSTALL_DIR="/opt/socks5"
 SERVER_SCRIPT="socks5_light.sh"
 SERVICE_NAME="socks5-proxy"
 DEFAULT_PORT=1080
-GITHUB_REPO="https://raw.githubusercontent.com/username/socks5/master"
+GITHUB_REPO="https://raw.githubusercontent.com/Luv9-cn/socks5/master"
 
 # 提示用户输入端口
 echo "请输入Socks5代理服务器端口号 (默认: $DEFAULT_PORT):"
